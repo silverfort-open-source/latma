@@ -156,6 +156,7 @@ In the example files you have several samples of real environments (some contain
 don't) which you can give as input for the analyzer. 
  
  **usage example**
- python eventlogcollector.py domain/username:password -ntlm -kerberos
- python analyzer.py logs.csv
+
+ 1. python eventlogcollector.py domain/username:password -ntlm -kerberos
+ 2. python analyzer.py logs.csv
  
