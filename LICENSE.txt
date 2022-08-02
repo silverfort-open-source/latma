@@ -1,0 +1,2 @@
+All rights are reserved to Silverfort.
+This code is shared with BlackHat's review board for review purposes only. If accepted, we will publish the code as open source in MIT license.

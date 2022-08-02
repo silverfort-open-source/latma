@@ -1,0 +1,13 @@
+ldap3>=2.9.1
+bs4>=0.0.1
+beautifulsoup4>=4.11.1
+pywin32>=303
+matplotlib>=3.5.1
+lxml>=4.8.0
+pandas>=1.0.4
+networkx>=2.4
+plotly==5.8.2
+impacket>=0.10.0
+distinctipy==1.2.1
+moviepy==1.0.3
+Pillow>=8.3.2
