@@ -18,7 +18,7 @@ The output contains the fields source host, destination, username, auth type, SP
  %Y/%m/%d %H:%M. The collector requires credential of a valid user with event viewer privileges across the environment 
  and queries the specific logs for each protocol. 
 
-Verify kerberos and NTLM protocols are audited across the environment using group policy:
+Verify Kerberos and NTLM protocols are audited across the environment using group policy:
 1. Kerberos - Computer configuration -> policies -> Windows Settings -> Security settings -> Local policies ->
  Audit Policies -> audit account logon events   
 2. NTLM - Computer Configuration -> Policies -> Windows Settings -> Security Settings -> Local Policies -> 
@@ -68,7 +68,7 @@ company portal or exchange server. We define hubs as machines many different acc
 such as proxies and VPNs. Authentications to sinks or from hubs are considered benign and are therefore removed from the
  authentication graph.  
  
-- In addition to basic classification, LATMA matches between accounts and machines they frequently authenticate from. 
+In addition to basic classification, LATMA matches between accounts and machines they frequently authenticate from. 
 If an account authenticates from a machine at least three different days in a three weeks’ period, it means that this
  account matches the machine and any authentication of this account from the machine is considered benign and removed 
  from the authentication graph.  
@@ -77,7 +77,7 @@ If an account authenticates from a machine at least three different days in a th
 
 The lateral movement IoCs are: 
 
-**White cane** - User accounts authenticating from a single machine to multiple ones in a relatively short time. 
+**White  cane**  - User accounts authenticating from a single machine to multiple ones in a relatively short time. 
 
 **Bridge** - User account X authenticating from machine A to machine B and following that, from machine B to 
 machine C. This IoC potentially indicates an attacker performing actual advance from its initial foothold (A) to 
@@ -88,7 +88,7 @@ destination machine that better serves the attack’s objectives.
  an additional account along its path and uses the new account to advance forward (a common example is account X being a
   standard domain user and account Y being a admin user) 
   
-**Weight Shift** - White cane (see above) from machine A to machines {B1,…, Bn}, followed by another White-cane from machine 
+**Weight Shift** - White cane (see above) from machine A to machines {B1,…, Bn}, followed by another White cane from machine 
 Bx  to machines {C1,…,Cn}. This IoC potentially indicates an attacker that has determined that machine B would better serve 
 the attack’s purposes from now on uses machine B as the source for additional searches. 
 
@@ -155,7 +155,7 @@ Optional arguments:
 In the example files you have several samples of real environments (some contain lateral movement attacks and some 
 don't) which you can give as input for the analyzer. 
  
- **usage example**
+ **Usage example**
 
  1. python eventlogcollector.py domain/username:password -ntlm -kerberos
  2. python analyzer.py logs.csv
