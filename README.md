@@ -77,7 +77,7 @@ If an account authenticates from a machine at least three different days in a th
 
 The lateral movement IoCs are: 
 
-**White cane** - User accounts authenticating from a single machine to multiple ones in a relatively short time. 
+**White cane** - User accounts authenticating from a single machine to multiple ones in a relatively short time. 
 
 **Bridge** - User account X authenticating from machine A to machine B and following that, from machine B to 
 machine C. This IoC potentially indicates an attacker performing actual advance from its initial foothold (A) to 
@@ -121,37 +121,37 @@ different spreadsheet for the authentications that are suspected to be part of l
 1. credentials  [domain/]username[:password] credentials format
    alternatively [domain/] username and then password will be prompted securely.
 Optional arguments:
--ntlm        Retrieve ntlm authentication logs from DC
--kerberos    Retrieve kerberos authentication logs from all computers in the domain
--debug       Turn DEBUG output ON
--help        show this help message and exit
--filter      Query specific ou or container in the domain, will result
+2. -ntlm        Retrieve ntlm authentication logs from DC
+3. -kerberos    Retrieve kerberos authentication logs from all computers in the domain
+4. -debug       Turn DEBUG output ON
+5. -help        show this help message and exit
+6. -filter      Query specific ou or container in the domain, will result
                     all workstations in the sub-OU as well.  Each OU will be in
                     format of DN (Distinguished Name). Supports multiple OUs
                     with a semicolon delimiter. Example:
                     OU=subunit,OU=unit;OU=anotherUnit,DC=domain,DC=com
                     Example:
                     CN=container,OU=unit;OU=anotherUnit,DC=domain,DC=com
--date         Starting date to collect event logs from. month-day-year format, if not specified take all available data
--threads     Number of working threads to use. Default attribute is 5. 
--ldap        Use Unsecure LDAP instead of LDAP/S
+7. -date         Starting date to collect event logs from. month-day-year format, if not specified take all available data
+8. -threads     amount of working threads to use
+9. -ldap        Use Unsecure LDAP instead of LDAP/S
 
  *The Analyzer*
  
  Required arguments:
- authentication_file    authentication file should contain list of NTLM and Kerberos requests
+1. authentication_file    authentication file should contain list of NTLM and Kerberos requests
  
  Optional arguments:
- -output_file         The location the csv with the all the IOCs is going to be saved to
- -progression_output_file         The location the csv with the the IOCs of the lateral movements is going to be save to
- -sink_threshold        number of accounts from which a machine is considered sink, default is 50
- -hub_threshold         number of accounts from which a machine is considered hub, default is 20
- -learning_period       learning period in days, default is 7 days
- -show_all_iocs         Show IoC that are not connected to any other IoCs
- -show_gant             If true, output the events in a gant format
+2. -output_file         The location the csv with the all the IOCs is going to be saved to
+3. -progression_output_file         The location the csv with the the IOCs of the lateral movements is going to be save to
+4. -sink_threshold        number of accounts from which a machine is considered sink, default is 50
+5. -hub_threshold         number of accounts from which a machine is considered hub, default is 20
+6. -learning_period       learning period in days, default is 7 days
+7. -show_all_iocs         Show IoC that are not connected to any other IoCs
+8. -show_gant             If true, output the events in a gant format
  
  
-  ## examples
+  ## Examples
 In the example files you have several samples of real environments (some contain lateral movement attacks and some 
 don't) which you can give as input for the analyzer. 
  
