@@ -150,6 +150,9 @@ Optional arguments:
 7. -show_all_iocs         Show IoC that are not connected to any other IoCs
 8. -show_gant             If true, output the events in a gant format
  
+ *Binary Usage*
+Open command prompt and navigate to the binary folder. 
+Run executables with the specified above arguments.
  
   ## Examples
 In the example files you have several samples of real environments (some contain lateral movement attacks and some 

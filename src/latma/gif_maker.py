@@ -100,7 +100,7 @@ class GifMaker:
             leg = Legend(ax, proxies, edge_labels, loc='upper left', fontsize='large')
             ax.add_artist(leg)
 
-        ax.legend(scatterpoints=1)
+        ax.legend(scatterpoints=1, prop={"size": 30})
 
     def show_frame(self, g: nx.Graph, pos: dict, title: str, ax: plt.axes, blast_nodes=None,
                    white_cane_nodes=None, last_active_edges=None, show_legend=True, node2colors=None):

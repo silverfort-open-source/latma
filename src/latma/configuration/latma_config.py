@@ -71,7 +71,7 @@ class GifParams(str):
     WHITE_CANE_NODE_SIZE = 300
     FADE_OUT_COLOR = 'lightgray'
     DEFAULT_FONT_SIZE = 17.5
-    INTERVAL = 200
+    INTERVAL = 1500
     DEFAULT_LINE_STYLE = '-'
     SPECIAL_LINE_STYLE = '--'
 
