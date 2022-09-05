@@ -119,7 +119,8 @@ different spreadsheet for the authentications that are suspected to be part of l
  
  Required arguments:
 1. credentials  [domain/]username[:password] credentials format
-   alternatively [domain/] username and then password will be prompted securely.
+   alternatively [domain/]username and then password will be prompted securely.
+   For domain please insert the FQDN (Fully Quallified Domain Name).
 Optional arguments:
 2. -ntlm        Retrieve ntlm authentication logs from DC
 3. -kerberos    Retrieve kerberos authentication logs from all computers in the domain
@@ -160,6 +161,6 @@ don't) which you can give as input for the analyzer.
  
  **Usage example**
 
- 1. python eventlogcollector.py domain/username:password -ntlm -kerberos
+ 1. python eventlogcollector.py domain.com/username:password -ntlm -kerberos
  2. python analyzer.py logs.csv
  
