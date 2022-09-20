@@ -118,8 +118,8 @@ different spreadsheet for the authentications that are suspected to be part of l
  *The Collector*
  
  Required arguments:
-1. credentials  [domain/]username[:password] credentials format
-   alternatively [domain/]username and then password will be prompted securely.
+1. credentials  [domain.com/]username[:password] credentials format
+   alternatively [domain.com/]username and then password will be prompted securely.
    For domain please insert the FQDN (Fully Quallified Domain Name).
 Optional arguments:
 2. -ntlm        Retrieve ntlm authentication logs from DC
@@ -136,7 +136,8 @@ Optional arguments:
 7. -date         Starting date to collect event logs from. month-day-year format, if not specified take all available data
 8. -threads     amount of working threads to use
 9. -ldap        Use Unsecure LDAP instead of LDAP/S
-
+10. -ldap_domain Custom domain on ldap login credentials. If empty, will use current user's session domain
+                        
  *The Analyzer*
  
  Required arguments:

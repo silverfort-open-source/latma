@@ -1,9 +1,9 @@
 import logging
-import os
 import re
 import socket
 import sys
 import xml.etree.ElementTree as ET
+
 from impacket.dcerpc.v5 import epm, transport
 from impacket.dcerpc.v5.rpcrt import DCERPCException
 from impacket.uuid import uuidtup_to_bin
@@ -98,14 +98,15 @@ def test_connection(host):
 
 
 class Credentials:
-    def __init__(self, user_name, admin_password, domain):
+    def __init__(self, user_name, admin_password, domain, ldap_domain=None):
         self.username = user_name
         self.password = admin_password
         self.domain = domain
+        self.ldap_domain = ldap_domain
 
 
 class Ldap:
-    def __init__(self, domain, username, password, use_ldap):
+    def __init__(self, domain, username, password, use_ldap, ldap_domain):
         self.domain = domain
         port = LDAPS_PORT
         use_ldaps = True
@@ -113,14 +114,15 @@ class Ldap:
             logging.info("Using LDAP")
             port = LDAP_PORT
             use_ldaps = False
+        logging.debug(f"Login to: {self.domain}, is LDAPs: {use_ldaps}, port: {port}, domain: {ldap_domain}, user: {username}")
         try:
             server = Server(host=self.domain, port=port, use_ssl=use_ldaps, get_info=ALL)
-            self.conn = Connection(server, user=f"{os.environ['userdomain']}\\{username}", password=password,
+            self.conn = Connection(server, user=f"{ldap_domain}\\{username}", password=password,
                                    client_strategy=SAFE_SYNC, auto_bind=True)
             if use_ldaps is True:
                 self.conn.start_tls()
         except LDAPBindError as e:
-            logging.error(f"Unable to bind due to: {e}")
+            logging.error(f"Unable to bind due to: {e}. User: {ldap_domain}\\{username}")
             sys.exit(0)
 
         except Exception as e:

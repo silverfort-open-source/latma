@@ -9,6 +9,7 @@ import pywintypes
 import win32evtlog
 from bs4 import BeautifulSoup
 from latma.utils import *
+import os
 
 EVENT_BULK_NUM = 1024
 DUMP_CHUNK_SIZE = 20
@@ -83,7 +84,7 @@ class Collector:
         """
         Retrieve Kerberos event logs algorithm.
         """
-        ldap_conn = Ldap(self.credentials.domain, self.credentials.username, self.credentials.password, self.use_ldap)
+        ldap_conn = Ldap(self.credentials.domain, self.credentials.username, self.credentials.password, self.use_ldap, self.credentials.ldap_domain)
 
         for workstation in ldap_conn.get_workstations(ldap_filter, self.search_base_filter):
             if workstation.get('raw_dn') and workstation['attributes']['dNSHostName'] and workstation['attributes'][
@@ -240,6 +241,8 @@ def main():
                              "Example: CN=container,OU=unit;OU=anotherUnit,DC=domain,DC=com")
     parser.add_argument('-debug', action='store_true', help='Turn DEBUG output ON')
     parser.add_argument('-ldap', action='store_true', help='Use unsecured LDAP instead of LDAP/s.')
+    parser.add_argument('-ldap_domain', action='store', help='Custom domain on ldap login credentials. If empty, '
+                                                             'will use current user\'s session domain')
 
     if len(sys.argv) == 1:
         parser.print_help()
@@ -261,7 +264,10 @@ def main():
         from getpass import getpass
 
         password = getpass("Password:")
-    credentials = Credentials(username, password, domain)
+
+    if options.ldap_domain is None:
+        options.ldap_domain = os.environ['userdomain']
+    credentials = Credentials(username, password, domain, options.ldap_domain)
 
     ntlm_collector = None
     kerberos_collector = None
