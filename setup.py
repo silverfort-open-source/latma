@@ -12,7 +12,6 @@ setup(
     entry_points={
         'console_scripts': [
             'eventlogcollector=latma.eventlogcollector:main',
-            'latma=latma.analyzer:main',
         ]
     }
 )
