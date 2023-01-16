@@ -138,20 +138,6 @@ Optional arguments:
 9. -ldap        Use Unsecure LDAP instead of LDAP/S
 10. -ldap_domain Custom domain on ldap login credentials. If empty, will use current user's session domain
                         
- *The Analyzer*
- 
- Required arguments:
-1. authentication_file    authentication file should contain list of NTLM and Kerberos requests
- 
- Optional arguments:
-2. -output_file         The location the csv with the all the IOCs is going to be saved to
-3. -progression_output_file         The location the csv with the the IOCs of the lateral movements is going to be save to
-4. -sink_threshold        number of accounts from which a machine is considered sink, default is 50
-5. -hub_threshold         number of accounts from which a machine is considered hub, default is 20
-6. -learning_period       learning period in days, default is 7 days
-7. -show_all_iocs         Show IoC that are not connected to any other IoCs
-8. -show_gant             If true, output the events in a gant format
- 
  *Binary Usage*
 Open command prompt and navigate to the binary folder. 
 Run executables with the specified above arguments.
@@ -163,5 +149,4 @@ don't) which you can give as input for the analyzer.
  **Usage example**
 
  1. python eventlogcollector.py domain.com/username:password -ntlm -kerberos
- 2. python analyzer.py logs.csv
  
