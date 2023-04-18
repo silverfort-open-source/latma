@@ -2,4 +2,6 @@ ldap3>=2.9.1
 pywin32>=303
 lxml>=4.8.0
 impacket>=0.10.0
-
+requests>=2.22.0
+pandas>=1.0.4
+ujson>=1.35
