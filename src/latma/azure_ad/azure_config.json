@@ -1,0 +1,10 @@
+{
+    "CLIENT_SECRET": "",
+    "TENANT_ID": "",
+    "CLIENT_ID" : "",
+    "USER" : "",
+    "PASSWORD" : "",
+    "COMPONENT_TIMEOUT": 60,
+    "MAX_THROTTLING_WAIT_TIME": 60
+}
+

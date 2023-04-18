@@ -1,17 +1,20 @@
 # Lateral movement analyzer tool
 
-Lateral movement analyzer (LATMA) collects authentication logs from the domain and searches for potential lateral 
-movement attacks and suspicious activity. The tool visualizes the findings with diagrams depicting the lateral movement
+Lateral movement analyzer (LATMA) collects authentication logs from the domain and Azure AD environments and searches for potential lateral 
+movement attacks and suspicious activity, the lateral movement can be in the AD environment or between cloud and on-prem. The tool visualizes the findings with diagrams depicting the lateral movement
 patterns. This tool contains two modules, one that collects the logs and one that analyzes them. You can execute each 
 of the modules separately, the event log collector should be executed in a Windows machine in an active directory domain 
 environment with python 3.8 or above. The analyzer can be executed in a linux machine and a Windows machine.  
  
  ## The Collector
-The Event Log Collector module scans domain controllers for successful NTLM authentication logs and endpoints for
- successful Kerberos authentication logs. It requires LDAP/S port 389 and 636 and RPC port 135 access to the domain
+The Event Log Collector has two functionalities, scanning domain controllers for successful NTLM authentication logs and endpoints for
+ successful Kerberos authentication logs and gathering sign-in logs from Azure AD. Collecting logs from AD environment requires LDAP/S port 389 and 636 and RPC port 135 access to the domain
   controller and clients. In addition it requires domain admin privileges or a user in the Event log Reader group or one
-   with equivalent permissions. This is required to pull event logs from all endpoints and domain controllers. 
+   with equivalent permissions. This is required to pull event logs from all endpoints and domain controllers.
+For the sign-in collection you need you have an application on your Azure-AD environment and supply relevant information in config file.
+Make sure that the user used for the sign-in collection is not configured with 2FA.
 
+#### Collecting AD logs
 The collector gathers NTLM logs from event 8004 on the domain controllers and Kerberos logs from event 4648 on the 
 clients. It generates as an output a csv comma delimited format file with all the available authentication traffic. 
 The output contains the fields source host, destination, username, auth type, SPN and timestamps in the format
@@ -24,6 +27,17 @@ Verify Kerberos and NTLM protocols are audited across the environment using grou
 2. NTLM - Computer Configuration -> Policies -> Windows Settings -> Security Settings -> Local Policies -> 
 Security Options -> Network Security: Restrict NTLM: audit NTLM authentication in this domain 
   
+#### Collecting Azure AD sign-ins
+The collector gathers successful sign-ins from hybrid or azure-ad joined devices only. 
+Those sign-ins represents successful movements between assets the Azure AD environment to the on-prem or vice versa
+The collector requires the following information to collect data:
+1. Tenant ID
+2. User without 2FA
+3. Password
+4. Client ID
+5. Client Secret
+You can use a predefined app or create a new one.
+
  
  ## The Analyzer
 The Analyzer receives as input a spreadsheet with authentication data formatted as specified in Collector's output structure. It 
@@ -149,4 +163,3 @@ don't) which you can give as input for the analyzer.
  **Usage example**
 
  1. python eventlogcollector.py domain.com/username:password -ntlm -kerberos
- 
